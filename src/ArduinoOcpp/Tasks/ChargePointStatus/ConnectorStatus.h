@@ -43,6 +43,9 @@ private:
     std::vector<std::function<const char *()>> connectorErrorCodeSamplers;
     const char *getErrorCode();
 
+    // Modified by Anupam
+    OcppEvseState forcedStatus = OcppEvseState::NOT_SET;
+
     OcppEvseState currentStatus = OcppEvseState::NOT_SET;
     std::shared_ptr<Configuration<int>> minimumStatusDuration; //in seconds
     OcppEvseState reportedStatus = OcppEvseState::NOT_SET;
@@ -108,6 +111,8 @@ public:
 
     void setConnectorLock(std::function<TxEnableState(TxTrigger)> lockConnector);
     void setTxBasedMeterUpdate(std::function<TxEnableState(TxTrigger)> updateTxBasedMeter);
+    // Modified by Anupam
+    void setConnectorStatusForced(OcppEvseState status);
 };
 
 } //end namespace ArduinoOcpp

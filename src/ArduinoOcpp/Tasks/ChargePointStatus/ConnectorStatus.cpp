@@ -96,6 +96,12 @@ OcppEvseState ConnectorStatus::inferenceStatus() {
         }
     }
 
+    // Modified by Anupam
+    // Handle forced status
+    if (forcedStatus != OcppEvseState::NOT_SET) {
+        return forcedStatus;
+    }
+    
     if (getErrorCode() != nullptr) {
         return OcppEvseState::Faulted;
     } else if (getAvailability() == AVAILABILITY_INOPERATIVE) {
@@ -619,4 +625,9 @@ void ConnectorStatus::setConnectorLock(std::function<TxEnableState(TxTrigger)> o
 
 void ConnectorStatus::setTxBasedMeterUpdate(std::function<TxEnableState(TxTrigger)> onTxBasedMeterPollTx) {
     this->onTxBasedMeterPollTx = onTxBasedMeterPollTx;
+}
+
+// Modified by Anupam
+void ConnectorStatus::setConnectorStatusForced(OcppEvseState status) {
+    this->forcedStatus = status;
 }
