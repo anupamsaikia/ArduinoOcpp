@@ -117,7 +117,9 @@ OcppEvseState ConnectorStatus::inferenceStatus() {
         }
         return OcppEvseState::Charging;
     } else if (!txProcess.existsActiveTrigger() && txProcess.getState() == TxEnableState::Inactive) {
-        return OcppEvseState::Available;
+        // return OcppEvseState::Available;
+        // Modified by Anupam
+        return OcppEvseState::Preparing;
     } else {
         /*
          * Either in Preparing or Finishing state. Only way to know is from previous state
@@ -127,7 +129,9 @@ OcppEvseState ConnectorStatus::inferenceStatus() {
                 previous == OcppEvseState::Charging ||
                 previous == OcppEvseState::SuspendedEV ||
                 previous == OcppEvseState::SuspendedEVSE) {
-            return OcppEvseState::Finishing;
+            // return OcppEvseState::Finishing;
+            // Modified by Anupam
+            return OcppEvseState::Preparing;
         } else {
             return OcppEvseState::Preparing;
         }
