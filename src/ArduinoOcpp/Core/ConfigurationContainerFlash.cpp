@@ -8,9 +8,14 @@
 
 #include <algorithm>
 
-#define MAX_FILE_SIZE 4000
+// #define MAX_FILE_SIZE 4000
+// #define MAX_CONFIGURATIONS 50
+// #define MAX_CONFJSON_CAPACITY 4000
+// Modified by Anupam
+#define MAX_FILE_SIZE 4500
 #define MAX_CONFIGURATIONS 50
-#define MAX_CONFJSON_CAPACITY 4000
+#define MAX_CONFJSON_CAPACITY 4500
+
 
 namespace ArduinoOcpp {
 
